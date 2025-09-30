@@ -14,7 +14,7 @@ public class AttackController : MonoBehaviour
     }
 
     [SerializeField] float rangeDistance;
-    LayerMask hitMask;
+    [SerializeField] LayerMask hitMask;
     void Attack()
     {
         StartCoroutine(CoolDown());
@@ -29,12 +29,16 @@ public class AttackController : MonoBehaviour
 
             IDamageable damageable = hit.collider.GetComponent<IDamageable>();
             if(damageable != null)
+            {
                 damageable.Damage();
+                Debug.Log($"Hit");
+            }
+
 
             SparkEffect();
         }
 
-        //StartCoroutine(VisualizeLine(firePoint.position, endPos));
+        StartCoroutine(VisualizeLine(firePoint.position, endPos));
 
     }
 
