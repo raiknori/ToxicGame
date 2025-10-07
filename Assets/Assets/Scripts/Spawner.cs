@@ -12,8 +12,13 @@ public class Spawner:MonoBehaviour
     [SerializeField] [Range(1,20)] int clustersAmount;
     [SerializeField] [Range(1, 3)] int goalsAmount;
  
-    List<Vector2> clusterPositions;
-    List<Vector2> goalsPositions;
+    List<Vector2> clusterPositions = new List<Vector2>();
+    List<Vector2> goalsPositions = new List<Vector2>();
+    private void Start()
+    {
+        Debug.Log("Debug spawning started!");
+        StartSpawning();
+    }
     public void StartSpawning()
     {
         StartCoroutine(SpawnProcess());
@@ -39,16 +44,24 @@ public class Spawner:MonoBehaviour
 
     void SpawnCluster()
     {
-        var clusterPos = Utilities.RandomVector2(Border.Instance.spawnRadius);
+        Vector2 clusterPos;
+        do
+        {
+            clusterPos = Utilities.RandomVector2(Border.Instance.spawnRadius);
 
-        for(int i = 0; i < UnityEngine.Random.Range(
+        } while (Vector2.Distance(new Vector2(0, 0), clusterPos) < 10f);
+        
+        Debug.Log($"Cluster with pos: {clusterPos}");
+
+        for (int i = 0; i < UnityEngine.Random.Range(
             1,
-            enemyInCluster); 
+            enemyInCluster+1); 
             i++)
         {
             var newPosition = Utilities.RandomVector2(-1,1);
+            Debug.Log($"Enemy in {clusterPos} with pos: {clusterPos + newPosition}");
 
-            var spawnedObj = Instantiate(enemies.GetRandomItem(), clusterPos+newPosition, Quaternion.identity);
+            Instantiate(enemies.GetRandomItem(), clusterPos+newPosition, Quaternion.identity);
         }
 
         clusterPositions.Add(clusterPos);
