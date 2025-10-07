@@ -1,50 +1,22 @@
-﻿using System;
+﻿/* 
+    ------------------- Code Monkey -------------------
+
+    Thank you for downloading this package
+    I hope you find it useful in your projects
+    If you have any questions let me know
+    Cheers!
+
+               unitycodemonkey.com
+    --------------------------------------------------
+ */
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using CodeMonkey.Utils;
 
-
-public class Game:MonoBehaviour
-{
-    GameState state;
-    public GameObject scenePrefab;
-
-    private void Start()
-    {
-        
-    }
-
-    public void ChangeState(GameStatesType stateType)
-    {
-        switch (stateType)
-        {
-            case GameStatesType.StartGame:
-                state = new StartGameState(this);
-                break;
-            case GameStatesType.DieGame:
-                state = new StartGameState(this);
-                break;
-            case GameStatesType.WinGame:
-                state = new StartGameState(this);
-                break;
-            case GameStatesType.EndGame:
-                state = new StartGameState(this);
-                break;
-        }
-    }
-
-
-
-}
-
-public class GoalTracker:MonoBehaviour
-{
-    
-
-
-}
-
-public class TargetPointer:MonoBehaviour
-{
+public class Window_QuestPointer : MonoBehaviour {
 
     [SerializeField] private Camera uiCamera;
     [SerializeField] private Sprite arrowSprite;
@@ -54,22 +26,19 @@ public class TargetPointer:MonoBehaviour
     private RectTransform pointerRectTransform;
     private Image pointerImage;
 
-    private void Awake()
-    {
+    private void Awake() {
         pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
         pointerImage = transform.Find("Pointer").GetComponent<Image>();
 
         Hide();
     }
 
-    private void Update()
-    {
+    private void Update() {
         float borderSize = 100f;
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
         bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
 
-        if (isOffScreen)
-        {
+        if (isOffScreen) {
             RotatePointerTowardsTargetPosition();
 
             pointerImage.sprite = arrowSprite;
@@ -82,9 +51,7 @@ public class TargetPointer:MonoBehaviour
             Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(cappedTargetScreenPosition);
             pointerRectTransform.position = pointerWorldPosition;
             pointerRectTransform.localPosition = new Vector3(pointerRectTransform.localPosition.x, pointerRectTransform.localPosition.y, 0f);
-        }
-        else
-        {
+        } else {
             pointerImage.sprite = crossSprite;
             Vector3 pointerWorldPosition = uiCamera.ScreenToWorldPoint(targetPositionScreenPoint);
             pointerRectTransform.position = pointerWorldPosition;
@@ -94,88 +61,22 @@ public class TargetPointer:MonoBehaviour
         }
     }
 
-    private void RotatePointerTowardsTargetPosition()
-    {
+    private void RotatePointerTowardsTargetPosition() {
         Vector3 toPosition = targetPosition;
         Vector3 fromPosition = Camera.main.transform.position;
         fromPosition.z = 0f;
         Vector3 dir = (toPosition - fromPosition).normalized;
-        float angle = Utilities.GetAngleFromVectorFloat(dir);
+        Mathf.a
+        float angle = UtilsClass.GetAngleFromVectorFloat(dir);
         pointerRectTransform.localEulerAngles = new Vector3(0, 0, angle);
     }
 
-    public void Hide()
-    {
+    public void Hide() {
         gameObject.SetActive(false);
     }
 
-    public void Show(Vector3 targetPosition)
-    {
+    public void Show(Vector3 targetPosition) {
         gameObject.SetActive(true);
         this.targetPosition = targetPosition;
     }
-}
-
-public abstract class GameState
-{
-    public void Enter()
-    {
-        Action();
-    }
-    public abstract void Action();
-    public abstract void Exit();
-}
-
-public class MenuGameState:GameState
-{
-    public override void Action()
-    {
-
-    }
-    public override void Exit()
-    {
-
-    }
-}
-
-public class StartGameState:GameState
-{
-    Game game;
-    public StartGameState(Game _game) 
-    {
-        game = _game;
-    }
-
-    public override void Action()
-    {
-        
-        GameObject.Instantiate(game.scenePrefab);
-        
-        
-        
-        
-        
-        
-        
-        //Single entry point перемещаем всю сцену в префаб, удаляем со сцены,
-        //тут загружаем, запускаем все нужные системы 
-        // Желательно чтоб все нужные системы были монобехом на сцене
-
-    }
-
-
-
-
-    public override void Exit()
-    {
-        throw new NotImplementedException(); 
-    }
-}
-
-public enum GameStatesType
-{
-    StartGame,
-    DieGame,
-    WinGame,
-    EndGame
 }
