@@ -5,14 +5,26 @@ using UnityEngine;
 
 public class Spawner:MonoBehaviour
 {
-    [SerializeField] List<GameObject> enemies;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public static Spawner Instance
+    {
+        get;
+
+        private set;
+    }
+
+    [SerializeField] public List<GameObject> enemies;
     [SerializeField] GameObject waterPrefab;
     [SerializeField] GameObject foodPrefab;
-    [SerializeField] [Range(1, 10)] int enemyInCluster;
-    [SerializeField] [Range(1,20)] int clustersAmount;
+    [SerializeField] [Range(1, 10)] public int enemyInCluster;
+    [SerializeField] [Range(1,20)] public int clustersAmount;
     [SerializeField] [Range(1, 3)] int goalsAmount;
  
-    List<Vector2> clusterPositions = new List<Vector2>();
+    public List<Vector2> clusterPositions = new List<Vector2>();
     List<Vector2> goalsPositions = new List<Vector2>();
     private void Start()
     {

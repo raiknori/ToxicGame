@@ -86,6 +86,7 @@ public class DeathEnemyState : EnemyState
 
     public override IEnumerator Action()
     {
+        enemy.clusterTarget.SpawnedEnemies--;
         enemy.GetComponent<CircleCollider2D>().enabled = false;
         enemy.movementController.Knockback();
         yield return new WaitForSeconds(5f);

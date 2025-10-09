@@ -5,7 +5,7 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     protected EnemyState state;
     public EnemyMovementController movementController;
     public float SpotRadius;
-
+    public ClusterTarget clusterTarget;
     private void Start()
     {
         state = new NeutralEnemyState(this);
