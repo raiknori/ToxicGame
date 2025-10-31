@@ -11,7 +11,7 @@ public class Timer:MonoBehaviour
     public UnityEvent onTime90Percent;
     public UnityEvent onTime95Percent;
 
-    [SerializeField][Range(10f, 240f)] float time;
+    [SerializeField][Range(10f, 240f)] public float time;
 
     Coroutine timerCoroutine;
 

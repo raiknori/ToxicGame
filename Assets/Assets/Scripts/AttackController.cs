@@ -17,6 +17,7 @@ public class AttackController : MonoBehaviour
     [SerializeField] LayerMask hitMask;
     void Attack()
     {
+        AudioManager.Instance.PlaySound("shot",true);
         StartCoroutine(CoolDown());
 
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, firePoint.right, rangeDistance, hitMask);
@@ -31,6 +32,7 @@ public class AttackController : MonoBehaviour
             if(damageable != null)
             {
                 damageable.Damage();
+                AudioManager.Instance.PlaySound("death_impact", true);
                 Debug.Log($"Hit");
             }
 
@@ -64,6 +66,7 @@ public class AttackController : MonoBehaviour
     {
         isCooldown = true;
         yield return new WaitForSecondsRealtime(coolDownTime);
+        AudioManager.Instance.PlaySound("reload");
         isCooldown = false;
     }
 }

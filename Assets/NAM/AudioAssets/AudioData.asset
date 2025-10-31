@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e3f7dc6d0ac994db78fa9f8d339db3, type: 3}
+  m_Name: AudioData
+  m_EditorClassIdentifier: 
+  audioList:
+  - name: reload
+    audioClip: {fileID: 8300000, guid: e6ff106cb84724747889fa62b3694d37, type: 3}
+  - name: notify
+    audioClip: {fileID: 8300000, guid: f3291dfae43bf9c45a7c85acdaca01b0, type: 3}
+  - name: glitch
+    audioClip: {fileID: 8300000, guid: f464f32520265724187285dbec6fd39e, type: 3}
+  - name: shot
+    audioClip: {fileID: 8300000, guid: dbe2d4ce9788ce843a4abda6e60178d1, type: 3}
+  - name: death_impact
+    audioClip: {fileID: 8300000, guid: c422a577d9b383348a870282cfbfb191, type: 3}

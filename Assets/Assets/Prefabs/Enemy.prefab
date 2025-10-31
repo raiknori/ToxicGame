@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementController: {fileID: 1970265111510188825}
   SpotRadius: 3
+  clusterTarget: {fileID: 0}
 --- !u!114 &1970265111510188825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +206,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e07135e390dd96a44bd9d09c48faa3fb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d1b3d899684000438540e9b76dbd35f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
