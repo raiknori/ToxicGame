@@ -14,7 +14,7 @@ public class Timer:MonoBehaviour
     [SerializeField][Range(10f, 240f)] public float time;
 
     Coroutine timerCoroutine;
-
+    Coroutine timeDecrasingCoroutine;
     public static Timer Instance
     {
         get;
@@ -36,10 +36,14 @@ public class Timer:MonoBehaviour
     {
         if (timerCoroutine != null)
             StopCoroutine(timerCoroutine);
+
+        if(timeDecrasingCoroutine != null)
+            StopCoroutine(timeDecrasingCoroutine);
     }
 
     IEnumerator TimerCore()
     {
+        timeDecrasingCoroutine = StartCoroutine(TimeDecreasing());
 
         yield return new WaitForSeconds(time*0.1f); //10%
         EnableMarkers();
@@ -58,6 +62,17 @@ public class Timer:MonoBehaviour
 
     }
 
+    IEnumerator TimeDecreasing()
+    {
+
+        while(time>0)
+        {
+            time--;
+            UI.Instance.UpdateTime(time);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     void EnableMarkers()
     {
         var targetThings = FindObjectsByType<TargetThing>(FindObjectsSortMode.None);
@@ -66,4 +81,13 @@ public class Timer:MonoBehaviour
             tt.CreateTargetPointer();
         }
     }
+
+    private void Start()
+    {
+        Debug.LogWarning("DEBUG: Timer started by debug");
+        StartTimer();
+
+        //remove when game start ready
+    }
 }
+

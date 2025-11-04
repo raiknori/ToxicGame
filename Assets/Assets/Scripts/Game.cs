@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -55,91 +54,6 @@ public class Game:MonoBehaviour
     }
 
 
-
-}
-
-public class UI:MonoBehaviour
-{
-    public static UI Instance
-    {
-        get;
-
-        private set;
-    }
-
-    float endGameSlider = 0.0f;
-    public float EndGameSlider
-    {
-        set { endGameSlider = value; }
-
-        get { return endGameSlider; }
-        
-    }
-
-    [SerializeField] TextMeshProUGUI waterPickUpText;
-    [SerializeField] TextMeshProUGUI foodPickUpText; 
-    [SerializeField] TextMeshProUGUI clusterToKillText;
-
-
-    public string WaterPickUpText
-    {
-        set 
-        {
-            SetText(waterPickUpText, value);
-        }
-        get {  return waterPickUpText.text; }
-    }
-
-    public string FoodPickUpText
-    {
-        set
-        {
-            SetText(foodPickUpText, value);
-        }
-        get { return foodPickUpText.text; }
-    }
-
-
-    public string ClusterToKillText
-    {
-        set
-        {
-            SetText(clusterToKillText, value);
-        }
-        get { return clusterToKillText.text; }
-    }
-
-
-    public void StartMenu()
-    {
-
-    }
-
-    public void DeathPanel()
-    {
-
-    }
-
-    public void WinPanel()
-    {
-
-    }
-
-    public void EndGamePanel()
-    {
-
-    }
-
-
-    void SetText(TextMeshProUGUI text, string newText)
-    {
-        //do tween
-    }
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
 }
 
