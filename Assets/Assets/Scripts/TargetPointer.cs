@@ -12,13 +12,11 @@ public class TargetPointer:MonoBehaviour
 
 
     private RectTransform pointerRectTransform;
-    private Image pointerImage;
+    public Image pointerImage;
 
     private void Awake()
     {
         pointerRectTransform = transform.Find("Pointer").GetComponent<RectTransform>();
-        pointerImage = transform.Find("Pointer").GetComponent<Image>();
-
         Hide();
     }
 
@@ -26,7 +24,10 @@ public class TargetPointer:MonoBehaviour
     {
         float borderSize = 100f;
         Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(targetPosition);
-        bool isOffScreen = targetPositionScreenPoint.x <= borderSize || targetPositionScreenPoint.x >= Screen.width - borderSize || targetPositionScreenPoint.y <= borderSize || targetPositionScreenPoint.y >= Screen.height - borderSize;
+        bool isOffScreen = targetPositionScreenPoint.x <= borderSize ||
+            targetPositionScreenPoint.x >= Screen.width - borderSize || 
+            targetPositionScreenPoint.y <= borderSize || 
+            targetPositionScreenPoint.y >= Screen.height - borderSize;
 
 
         RotatePointerTowardsTargetPosition();

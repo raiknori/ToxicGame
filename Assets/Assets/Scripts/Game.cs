@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,7 @@ public class Game:MonoBehaviour
 {
     GameState state;
     public GameObject scenePrefab;
+    public GameObject sceneUi;
 
     public static Game Instance
     {
@@ -24,6 +26,8 @@ public class Game:MonoBehaviour
     private void Start()
     {
         state = new MenuGameState(this);
+        state.Enter();
+
     }
 
     public void ChangeState(GameStatesType stateType)
@@ -35,19 +39,24 @@ public class Game:MonoBehaviour
                 state = new StartGameState(this);
                 state.Enter();
                 break;
+            case GameStatesType.PlayingGame:
+                state.Exit();
+                state = new PlayingGameState(this);
+                state.Enter();
+                break;
             case GameStatesType.DieGame:
                 state.Exit();
-                state = new StartGameState(this);
+                state = new DieGameState(this);
                 state.Enter();
                 break;
             case GameStatesType.WinGame:
                 state.Exit();
-                state = new StartGameState(this);
+                state = new WinGameState(this);
                 state.Enter();
                 break;
             case GameStatesType.EndGame:
                 state.Exit();
-                state = new StartGameState(this);
+                state = new EndGameState(this);
                 state.Enter();
                 break;
         }
@@ -68,10 +77,6 @@ public abstract class GameState
 }
 
 
-public static class Signal
-{
-    public static bool StartPressed = false;
-}
 public class MenuGameState:GameState
 {
     Game game;
@@ -83,16 +88,14 @@ public class MenuGameState:GameState
     Coroutine menuCoroutine;
     public override void Action()
     {
-        Signal.StartPressed = false;
         menuCoroutine = game.StartCoroutine(Menu());
 
     }
 
     IEnumerator Menu()
     {
-        UI.Instance.StartMenu();
 
-        while (!Signal.StartPressed)
+        while (!(Input.anyKeyDown))
         {
             yield return null;
         }
@@ -134,9 +137,10 @@ public class StartGameState:GameState
     IEnumerator StartGame()
     {
 
-
-
+        GameObject.Destroy(game.sceneUi);
         GameObject.Instantiate(game.scenePrefab);
+
+        game.ChangeState(GameStatesType.PlayingGame);
         yield return null;
     }
 
@@ -144,7 +148,26 @@ public class StartGameState:GameState
 
     public override void Exit()
     {
-        throw new NotImplementedException(); 
+
+    }
+}
+
+public class PlayingGameState:GameState
+{
+    Game game;
+    public PlayingGameState(Game _game)
+    {
+        game = _game;
+    }
+
+    public override void Action()
+    {
+
+    }
+
+    public override void Exit()
+    {
+
     }
 }
 
@@ -158,6 +181,7 @@ public class WinGameState : GameState
 
     public override void Action()
     {
+        Debug.Log("WinGame state");
         Timer.Instance.StopTimer();
         UI.Instance.DeathPanel();
         game.ChangeState(GameStatesType.EndGame);
@@ -178,6 +202,7 @@ public class DieGameState : GameState
 
     public override void Action()
     {
+        Debug.Log("Die game state");
         Timer.Instance.StopTimer();
         UI.Instance.DeathPanel();
         game.ChangeState(GameStatesType.EndGame);
@@ -217,6 +242,7 @@ public class EndGameState : GameState
 public enum GameStatesType
 {
     StartGame,
+    PlayingGame,
     DieGame,
     WinGame,
     EndGame

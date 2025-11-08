@@ -61,12 +61,6 @@ public class UI:MonoBehaviour
         SetText(timeLeftText, $"O2: {time}",0.3f);
     }
 
-
-    public void StartMenu()
-    {
-
-    }
-
     public void DeathPanel()
     {
 
@@ -83,7 +77,7 @@ public class UI:MonoBehaviour
     }
 
 
-    void SetText(TextMeshProUGUI text, string newText, float duration = 1.5f)
+    void SetText(TextMeshProUGUI text, string newText, float duration = 0.5f)
     {
         StartCoroutine(ShakeEffect(duration,text,newText));
 
@@ -129,5 +123,7 @@ public class UI:MonoBehaviour
     }
 
 }
+
+
 
 

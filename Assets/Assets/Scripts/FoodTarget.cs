@@ -13,8 +13,8 @@ public class FoodTarget:TargetThing
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             GoalTracker.Instance.FoodToPickUp--;
-            gameObject.GetComponent<TargetPointer>().enabled = false;   
         }
 
     }
 }
+

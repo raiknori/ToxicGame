@@ -14,7 +14,9 @@ public class WaterTarget : TargetThing
         {
             GoalTracker.Instance.WaterToPickUp--;
 
-            gameObject.GetComponent<TargetPointer>().enabled = false;
+
+            
+                 
         }
 
     }

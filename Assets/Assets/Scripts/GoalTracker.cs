@@ -27,7 +27,7 @@ public class GoalTracker:MonoBehaviour
         set 
         {
             waterToPickUp = value;
-            UI.Instance.WaterPickUpText = $"{value}";
+            UI.Instance.WaterPickUpText = $"Water remain: {value}";
 
             if (waterToPickUp <= 0)
                 StartGameWin();
@@ -41,7 +41,7 @@ public class GoalTracker:MonoBehaviour
         set
         {
             foodToPickUp = value;
-            UI.Instance.FoodPickUpText = $"{value}";
+            UI.Instance.FoodPickUpText = $"Food remain: {value}";
 
 
             if (foodToPickUp <= 0)
@@ -56,7 +56,7 @@ public class GoalTracker:MonoBehaviour
         set
         {
             clusterToKill = value;
-            UI.Instance.ClusterToKillText = $"{value}";
+            UI.Instance.ClusterToKillText = $"Enemies clusters remain: {value}";
 
 
             if (clusterToKill <= 0)

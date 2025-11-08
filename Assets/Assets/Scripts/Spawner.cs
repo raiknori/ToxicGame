@@ -22,10 +22,10 @@ public class Spawner:MonoBehaviour
     [SerializeField] GameObject foodPrefab;
     [SerializeField] [Range(1, 10)] public int enemyInCluster;
     [SerializeField] [Range(1,20)] public int clustersAmount;
-    [SerializeField] [Range(1, 3)] int goalsAmount;
+    [SerializeField] [Range(1, 3)] public int goalsAmount;
  
     public List<Vector2> clusterPositions = new List<Vector2>();
-    List<Vector2> goalsPositions = new List<Vector2>();
+    public List<Vector2> goalsPositions = new List<Vector2>();
     private void Start()
     {
         Debug.Log("Debug spawning started!");
@@ -56,6 +56,8 @@ public class Spawner:MonoBehaviour
 
     void SpawnCluster()
     {
+        GoalTracker.Instance.ClusterToKill = clustersAmount;
+
         Vector2 clusterPos;
         do
         {

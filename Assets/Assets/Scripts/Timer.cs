@@ -1,5 +1,6 @@
-﻿
+﻿using DG.Tweening.Core.Easing;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,6 +16,8 @@ public class Timer:MonoBehaviour
 
     Coroutine timerCoroutine;
     Coroutine timeDecrasingCoroutine;
+
+    [SerializeField] DetectionCompass detectionCompass;
     public static Timer Instance
     {
         get;
@@ -58,7 +61,7 @@ public class Timer:MonoBehaviour
         yield return new WaitForSeconds(time * 0.05f); //90%
         onTime95Percent?.Invoke();
         yield return new WaitForSeconds(time * 0.05f); //100%
-        Game.Instance.ChangeState(GameStatesType.DieGame);
+
 
     }
 
@@ -71,23 +74,22 @@ public class Timer:MonoBehaviour
             UI.Instance.UpdateTime(time);
             yield return new WaitForSeconds(1f);
         }
+
+        Game.Instance.ChangeState(GameStatesType.DieGame);
     }
 
     void EnableMarkers()
     {
-        var targetThings = FindObjectsByType<TargetThing>(FindObjectsSortMode.None);
-        foreach (var tt in targetThings)
-        {
-            tt.CreateTargetPointer();
-        }
+
+        List<Vector2> list = new List<Vector2>();
+        list.AddRange(Spawner.Instance.goalsPositions.ToArray());
+        list.AddRange(Spawner.Instance.clusterPositions.ToArray());
+
+        detectionCompass.StartFlashing(list);
     }
 
     private void Start()
     {
-        Debug.LogWarning("DEBUG: Timer started by debug");
         StartTimer();
-
-        //remove when game start ready
     }
 }
-
