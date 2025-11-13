@@ -10,9 +10,10 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour, IDamageable
 {
 
+
     public void Damage()
     {
-        Debug.Log("Damage player");
+        Game.Instance.ChangeState(GameStatesType.DieGame);
     }
 
     void Start()

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Text;
 using TMPro;
 using UnityEngine;
 
@@ -61,9 +60,10 @@ public class UI:MonoBehaviour
         SetText(timeLeftText, $"O2: {time}",0.3f);
     }
 
-    public void DeathPanel()
+    [SerializeField] GameObject deathPanel;
+    public void DeathPanel(bool show)
     {
-
+        deathPanel.SetActive(show);
     }
 
     public void WinPanel()
@@ -71,9 +71,10 @@ public class UI:MonoBehaviour
 
     }
 
-    public void EndGamePanel()
+    [SerializeField] GameObject endGamePanel;
+    public void EndGamePanel(bool show)
     {
-
+        endGamePanel.SetActive(show);
     }
 
 

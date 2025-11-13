@@ -11,6 +11,22 @@ public class Game:MonoBehaviour
     public GameObject scenePrefab;
     public GameObject sceneUi;
 
+    GameObject currentScene;
+    public GameObject CurrentScene
+    {
+        get {  return currentScene; }
+
+        set
+        {
+            if(currentScene != null)
+            {
+                Destroy(currentScene);
+            }
+
+            currentScene = value;   
+        }
+    }
+
     public static Game Instance
     {
         get;
@@ -138,7 +154,7 @@ public class StartGameState:GameState
     {
 
         GameObject.Destroy(game.sceneUi);
-        GameObject.Instantiate(game.scenePrefab);
+        game.CurrentScene = GameObject.Instantiate(game.scenePrefab);
 
         game.ChangeState(GameStatesType.PlayingGame);
         yield return null;
@@ -183,7 +199,7 @@ public class WinGameState : GameState
     {
         Debug.Log("WinGame state");
         Timer.Instance.StopTimer();
-        UI.Instance.DeathPanel();
+        UI.Instance.DeathPanel(true);
         game.ChangeState(GameStatesType.EndGame);
     }
 
@@ -202,10 +218,11 @@ public class DieGameState : GameState
 
     public override void Action()
     {
-        Debug.Log("Die game state");
+
         Timer.Instance.StopTimer();
-        UI.Instance.DeathPanel();
-        game.ChangeState(GameStatesType.EndGame);
+        UI.Instance.DeathPanel(true);
+        var player = GameObject.FindAnyObjectByType<Player>();
+        player.gameObject.SetActive(false);
 
     }
     
@@ -225,13 +242,20 @@ public class EndGameState : GameState
     }
     public override void Action()
     {
+        UI.Instance.DeathPanel(false);
+        UI.Instance.EndGamePanel(true);
         game.StartCoroutine(EndGame());
     }
 
     IEnumerator EndGame()
     {
-        yield return new WaitForSeconds(5f);
-        UI.Instance.EndGamePanel();
+
+        while (!(Input.anyKeyDown))
+        {
+            yield return null;
+        }
+
+        game.ChangeState(GameStatesType.StartGame);
     }
 
     public override void Exit()

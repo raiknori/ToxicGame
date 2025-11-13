@@ -75,7 +75,7 @@ public class Spawner:MonoBehaviour
             var newPosition = Utilities.RandomVector2(-1,1);
             Debug.Log($"Enemy in {clusterPos} with pos: {clusterPos + newPosition}");
 
-            Instantiate(enemies.GetRandomItem(), clusterPos+newPosition, Quaternion.identity);
+            Instantiate(enemies.GetRandomItem(), clusterPos+newPosition, Quaternion.identity, Game.Instance.CurrentScene.transform);
         }
 
         clusterPositions.Add(clusterPos);
@@ -89,7 +89,7 @@ public class Spawner:MonoBehaviour
         for(int i = 0; i < goalsAmount; i++)
         {
             var spawnPos = Utilities.RandomVector2(Border.Instance.spawnRadius);
-            Instantiate(foodPrefab, spawnPos, Quaternion.identity);
+            Instantiate(foodPrefab, spawnPos, Quaternion.identity, Game.Instance.CurrentScene.transform);
             goalsPositions.Add(spawnPos);
         }
 
@@ -97,7 +97,7 @@ public class Spawner:MonoBehaviour
         for (int i = 0; i < goalsAmount; i++)
         {
             var spawnPos = Utilities.RandomVector2(Border.Instance.spawnRadius);
-            Instantiate(waterPrefab, spawnPos, Quaternion.identity);
+            Instantiate(waterPrefab, spawnPos, Quaternion.identity, Game.Instance.CurrentScene.transform);
             goalsPositions.Add(spawnPos);
         }
 
