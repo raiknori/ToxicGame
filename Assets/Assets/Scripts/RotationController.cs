@@ -6,7 +6,7 @@ public class RotationController:MonoBehaviour
 
     Vector3 mousePosition;
 
-    private void Update()
+    private void FixedUpdate()
     {
         Rotate();
     }

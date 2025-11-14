@@ -75,6 +75,8 @@ public class GoalTracker:MonoBehaviour
 
     IEnumerator CheckWinGame()
     {
+        UI.Instance.WarningPanel(true, "You could leave now (Press E)");
+
         while(true)
         {
             if(Input.GetKeyDown(KeyCode.E))

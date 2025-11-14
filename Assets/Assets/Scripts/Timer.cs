@@ -13,6 +13,7 @@ public class Timer:MonoBehaviour
     public UnityEvent onTime95Percent;
 
     [SerializeField][Range(10f, 240f)] public float time;
+    public float StartTime;
 
     Coroutine timerCoroutine;
     Coroutine timeDecrasingCoroutine;
@@ -28,6 +29,7 @@ public class Timer:MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        StartTime = time;
     }
 
     public void StartTimer()

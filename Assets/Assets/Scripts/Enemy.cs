@@ -26,4 +26,9 @@ public abstract class Enemy : MonoBehaviour, IDamageable
     {
         Gizmos.DrawWireSphere(transform.position,SpotRadius);
     }
+
+    public void DoDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

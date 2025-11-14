@@ -137,16 +137,6 @@ public class StartGameState:GameState
     {
         game.StartCoroutine(StartGame());
 
-        
-        
-        
-        
-        
-        
-        
-        //Single entry point перемещаем всю сцену в префаб, удаляем со сцены,
-        //тут загружаем, запускаем все нужные системы 
-        // Желательно чтоб все нужные системы были монобехом на сцене
 
     }
 
@@ -199,8 +189,11 @@ public class WinGameState : GameState
     {
         Debug.Log("WinGame state");
         Timer.Instance.StopTimer();
-        UI.Instance.DeathPanel(true);
-        game.ChangeState(GameStatesType.EndGame);
+        UI.Instance.WarningPanel(false, "");
+        UI.Instance.WinPanel(true);
+        var player = GameObject.FindAnyObjectByType<Player>();
+        player.gameObject.SetActive(false);
+
     }
 
     public override void Exit()

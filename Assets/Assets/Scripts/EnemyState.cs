@@ -22,6 +22,8 @@ public abstract class EnemyState
     }
 
     public abstract IEnumerator Action();
+
+
 }
 
 
@@ -86,10 +88,11 @@ public class DeathEnemyState : EnemyState
 
     public override IEnumerator Action()
     {
+        Debug.Log("Enemy death state");
         enemy.clusterTarget.SpawnedEnemies--;
         enemy.GetComponent<CircleCollider2D>().enabled = false;
-        enemy.movementController.Knockback();
-        yield return new WaitForSeconds(5f);
-        GameObject.Destroy(enemy.gameObject);
+        enemy.movementController.Speed = 0;
+        yield return new WaitForSeconds(0.4f);
+        enemy.DoDestroy();
     }
 }

@@ -28,7 +28,6 @@ public class Spawner:MonoBehaviour
     public List<Vector2> goalsPositions = new List<Vector2>();
     private void Start()
     {
-        Debug.Log("Debug spawning started!");
         StartSpawning();
     }
     public void StartSpawning()
@@ -58,6 +57,10 @@ public class Spawner:MonoBehaviour
     {
         GoalTracker.Instance.ClusterToKill = clustersAmount;
 
+        var cluster = new ClusterTarget();
+
+
+
         Vector2 clusterPos;
         do
         {
@@ -75,7 +78,10 @@ public class Spawner:MonoBehaviour
             var newPosition = Utilities.RandomVector2(-1,1);
             Debug.Log($"Enemy in {clusterPos} with pos: {clusterPos + newPosition}");
 
-            Instantiate(enemies.GetRandomItem(), clusterPos+newPosition, Quaternion.identity, Game.Instance.CurrentScene.transform);
+           var enemy = Instantiate(enemies.GetRandomItem(), 
+               clusterPos+newPosition, Quaternion.identity, Game.Instance.CurrentScene.transform)
+                .GetComponent<Enemy>().clusterTarget = cluster;
+            cluster.SpawnedEnemies++;
         }
 
         clusterPositions.Add(clusterPos);

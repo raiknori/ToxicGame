@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
-public class FoodTarget:TargetThing
+public class FoodTarget:MonoBehaviour
 {
     private void Start()
     {
         GoalTracker.Instance.FoodToPickUp++;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             GoalTracker.Instance.FoodToPickUp--;
+            Destroy(gameObject);
         }
 
     }

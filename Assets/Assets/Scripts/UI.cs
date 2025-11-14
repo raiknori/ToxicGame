@@ -66,9 +66,21 @@ public class UI:MonoBehaviour
         deathPanel.SetActive(show);
     }
 
-    public void WinPanel()
+    [SerializeField] GameObject winGamePanel;
+    public void WinPanel(bool show)
     {
+        winGamePanel.SetActive(show);
+    }
 
+    [SerializeField] GameObject warningPanel;
+    [SerializeField] TextMeshProUGUI warningPanelText;
+    public void WarningPanel(bool show, string text)
+    {
+        warningPanel.SetActive(show);
+        if(show)
+        {
+            SetText(warningPanelText, text);
+        }
     }
 
     [SerializeField] GameObject endGamePanel;
