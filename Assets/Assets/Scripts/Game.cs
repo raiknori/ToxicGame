@@ -27,6 +27,8 @@ public class Game:MonoBehaviour
         }
     }
 
+    public bool IsTutorial = true;
+
     public static Game Instance
     {
         get;
@@ -146,6 +148,7 @@ public class StartGameState:GameState
         GameObject.Destroy(game.sceneUi);
         game.CurrentScene = GameObject.Instantiate(game.scenePrefab);
 
+        AudioManager.Instance.PlaySound("glitch");
         game.ChangeState(GameStatesType.PlayingGame);
         yield return null;
     }
@@ -164,11 +167,30 @@ public class PlayingGameState:GameState
     public PlayingGameState(Game _game)
     {
         game = _game;
+
+
+
+    }
+
+    IEnumerator Tutorial()
+    {
+        UI.Instance.WarningPanel(true, "You stepped out into a toxic world. You have less than a minute");
+        yield return new WaitForSeconds(3f);
+        UI.Instance.WarningPanel(true, "Try to complete at least one objective");
+        yield return new WaitForSeconds(3f);
+        UI.Instance.WarningPanel(true, "The sensor in your mask glows red, pointing toward something worth checking out");
+        yield return new WaitForSeconds(4.5f);
+        UI.Instance.WarningPanel(false, "");
+        game.IsTutorial = false;
     }
 
     public override void Action()
     {
-
+        if (game.IsTutorial)
+        {
+            Timer.Instance.time += 10;
+            game.StartCoroutine(Tutorial());
+        }
     }
 
     public override void Exit()
@@ -213,6 +235,7 @@ public class DieGameState : GameState
     {
 
         Timer.Instance.StopTimer();
+        UI.Instance.WarningPanel(false, "");
         UI.Instance.DeathPanel(true);
         var player = GameObject.FindAnyObjectByType<Player>();
         player.gameObject.SetActive(false);
@@ -236,6 +259,8 @@ public class EndGameState : GameState
     public override void Action()
     {
         UI.Instance.DeathPanel(false);
+        UI.Instance.WarningPanel(false,"");
+        UI.Instance.WinPanel(false);
         UI.Instance.EndGamePanel(true);
         game.StartCoroutine(EndGame());
     }

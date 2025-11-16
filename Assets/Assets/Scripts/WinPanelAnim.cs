@@ -22,7 +22,7 @@ public class WinPanelAnim : MonoBehaviour
     IEnumerator Animation()
     {
         //Play anim
-        winPanelMainText.text = $"Your raid lasted {Timer.Instance.StartTime-Timer.Instance.time}\n" +
+        winPanelMainText.text = $"Your raid lasted {Timer.Instance.StartTime-Timer.Instance.time} seconds\n" +
             $"You have picked up {Spawner.Instance.goalsAmount-GoalTracker.Instance.WaterToPickUp} bottles of water\n" +
             $"You have picked up {Spawner.Instance.goalsAmount - GoalTracker.Instance.FoodToPickUp} cans of food";
 

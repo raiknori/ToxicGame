@@ -80,6 +80,8 @@ public class Timer:MonoBehaviour
         Game.Instance.ChangeState(GameStatesType.DieGame);
     }
 
+
+
     void EnableMarkers()
     {
 

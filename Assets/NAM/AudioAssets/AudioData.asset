@@ -23,3 +23,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: dbe2d4ce9788ce843a4abda6e60178d1, type: 3}
   - name: death_impact
     audioClip: {fileID: 8300000, guid: c422a577d9b383348a870282cfbfb191, type: 3}
+  - name: goalcomplete
+    audioClip: {fileID: 8300000, guid: 86ac16f7265a89e40b8177bbb3ee9ba3, type: 3}
+  - name: pickup
+    audioClip: {fileID: 8300000, guid: ba2dd8994298c3a47939a873a7d4b71f, type: 3}

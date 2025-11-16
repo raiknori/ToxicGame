@@ -30,7 +30,10 @@ public class GoalTracker:MonoBehaviour
             UI.Instance.WaterPickUpText = $"Water remain: {value}";
 
             if (waterToPickUp <= 0)
-                StartGameWin();
+            {
+                StartGameWin(); AudioManager.Instance.PlaySound("goalcomplete");
+            }
+
         }
 
         get { return waterToPickUp; }
@@ -45,7 +48,10 @@ public class GoalTracker:MonoBehaviour
 
 
             if (foodToPickUp <= 0)
-                StartGameWin();
+            {
+                StartGameWin(); AudioManager.Instance.PlaySound("goalcomplete");
+            }
+
         }
 
         get { return foodToPickUp; }
@@ -60,7 +66,10 @@ public class GoalTracker:MonoBehaviour
 
 
             if (clusterToKill <= 0)
-                StartGameWin();
+            {
+                StartGameWin(); AudioManager.Instance.PlaySound("goalcomplete");
+            }
+
         }
 
         get { return clusterToKill; }

@@ -77,8 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementController: {fileID: 1970265111510188825}
-  SpotRadius: 3
-  clusterTarget: {fileID: 0}
+  SpotRadius: 4.5
 --- !u!114 &1970265111510188825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 3770728572918190245}
   sight: {fileID: 2525308017715234085}
-  Speed: 0.1
+  Speed: 0.125
 --- !u!58 &3741904885545554387
 CircleCollider2D:
   m_ObjectHideFlags: 0

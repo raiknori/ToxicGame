@@ -13,6 +13,7 @@ public class WaterTarget: MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             GoalTracker.Instance.WaterToPickUp--;
+            AudioManager.Instance.PlaySound("pickup");
             Destroy(gameObject);
 
 

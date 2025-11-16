@@ -57,7 +57,7 @@ public class AttackController : MonoBehaviour
         lineRenderer.SetPosition(1, end);
 
         lineRenderer.enabled = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.02f);
         lineRenderer.enabled = false;
     }
 

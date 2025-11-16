@@ -13,6 +13,7 @@ public class FoodTarget:MonoBehaviour
         if (collision.gameObject.GetComponent<Player>() != null)
         {
             GoalTracker.Instance.FoodToPickUp--;
+            AudioManager.Instance.PlaySound("pickup");
             Destroy(gameObject);
         }
 

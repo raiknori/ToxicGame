@@ -54,10 +54,13 @@ public class UI:MonoBehaviour
         get { return clusterToKillText.text; }
     }
 
-
+    bool playAlarmSound = false;
     public void UpdateTime(float time)
     {
         SetText(timeLeftText, $"O2: {time}",0.3f);
+
+        if (playAlarmSound)
+            AudioManager.Instance.PlaySound("notify",true);
     }
 
     [SerializeField] GameObject deathPanel;
@@ -133,6 +136,7 @@ public class UI:MonoBehaviour
     void AlarmMoment()
     {
         timeLeftText.color = new Color(1f, 0.364f, 0.329f);
+        playAlarmSound = true;
     }
 
 }

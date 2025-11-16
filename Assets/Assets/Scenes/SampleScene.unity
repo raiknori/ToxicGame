@@ -470,6 +470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenePrefab: {fileID: 4188225204382340340, guid: 6119a8c1598c22348aef5492d06654b3, type: 3}
   sceneUi: {fileID: 1157682970}
+  IsTutorial: 1
 --- !u!1 &1157682970
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,15 +637,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press any key to start
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d3bc3167140c58d41a33830d408f07ce, type: 2}
+  m_sharedMaterial: {fileID: -7119011859659833567, guid: d3bc3167140c58d41a33830d408f07ce, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4293717230
+  m_fontColor: {r: 0.93207544, g: 0.92679954, b: 0.92679954, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -661,8 +662,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 80
-  m_fontSizeBase: 80
+  m_fontSize: 114.08
+  m_fontSizeBase: 114.08
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
