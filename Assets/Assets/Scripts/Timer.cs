@@ -29,7 +29,7 @@ public class Timer:MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        StartTime = time;
+
     }
 
     public void StartTimer()
@@ -94,6 +94,7 @@ public class Timer:MonoBehaviour
 
     private void Start()
     {
+        StartTime = time;
         StartTimer();
     }
 }

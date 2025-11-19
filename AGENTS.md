@@ -2,7 +2,7 @@
 - Project name: ToxicGame
 - Unity version: Unity 6000.0.51f1
 - Active game object:
-  - Name: Game
+  - Name: Core
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

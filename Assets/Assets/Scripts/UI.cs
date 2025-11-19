@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 
-public class UI:MonoBehaviour
+public class UI : MonoBehaviour
 {
     public static UI Instance
     {
@@ -17,22 +17,22 @@ public class UI:MonoBehaviour
         set { endGameSlider = value; }
 
         get { return endGameSlider; }
-        
+
     }
 
     [SerializeField] TextMeshProUGUI waterPickUpText;
-    [SerializeField] TextMeshProUGUI foodPickUpText; 
+    [SerializeField] TextMeshProUGUI foodPickUpText;
     [SerializeField] TextMeshProUGUI clusterToKillText;
     [SerializeField] TextMeshProUGUI timeLeftText;
 
 
     public string WaterPickUpText
     {
-        set 
+        set
         {
             SetText(waterPickUpText, value);
         }
-        get {  return waterPickUpText.text; }
+        get { return waterPickUpText.text; }
     }
 
     public string FoodPickUpText
@@ -57,10 +57,10 @@ public class UI:MonoBehaviour
     bool playAlarmSound = false;
     public void UpdateTime(float time)
     {
-        SetText(timeLeftText, $"O2: {time}",0.3f);
+        SetText(timeLeftText, $"O2: {time}", 0.3f);
 
         if (playAlarmSound)
-            AudioManager.Instance.PlaySound("notify",true);
+            AudioManager.Instance.PlaySound("notify", true);
     }
 
     [SerializeField] GameObject deathPanel;
@@ -80,7 +80,7 @@ public class UI:MonoBehaviour
     public void WarningPanel(bool show, string text)
     {
         warningPanel.SetActive(show);
-        if(show)
+        if (show)
         {
             SetText(warningPanelText, text);
         }
@@ -95,19 +95,22 @@ public class UI:MonoBehaviour
 
     void SetText(TextMeshProUGUI text, string newText, float duration = 0.5f)
     {
-        StartCoroutine(ShakeEffect(duration,text,newText));
+        StartCoroutine(ShakeEffect(duration, text, newText));
 
-            
+
     }
 
     IEnumerator ShakeEffect(float duration, TextMeshProUGUI text, string newText)
     {
+        if (text == null || !text.gameObject.activeInHierarchy) yield break;
+
         var rect = text.rectTransform;
         var startPos = rect.anchoredPosition;
 
         float time = 0f;
 
         text.text = newText;
+        yield return null;
 
         while (time < duration)
         {
@@ -121,6 +124,8 @@ public class UI:MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         rect.anchoredPosition = startPos;
+
+        yield break;
     }
 
     private void Awake()
