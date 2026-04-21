@@ -1,11 +1,38 @@
-## ToxicGame
+# Toxic Game
 
-Game developed for MiniGame Jam: Toxic.
-The core idea revolved around environmental danger and survival mechanics tied to a toxic atmosphere.
+A game prototype developed for Mini Game Jam: Toxic, focused on survival mechanics in a hazardous environment.
 
-## Focus
-- Delivering a stable and fully playable MVP within strict time constraints
+## Technologies
+- Unity 6.0 (6000.0.51f1)
+
+## Features
+- Environmental hazard system (toxic atmosphere)
+- Survival-focused gameplay loop
+- Health/resource management under pressure
+- Fast-paced prototype built during a game jam
+
+## How to Run
+
+1. Open the project in Unity Hub
+2. Use Unity version: 6000.0.x (most likely will work on higher versions)
+3. Open scene called "SampleScene"
+
+## Controls
+
+| Action     | Input |
+|------------|-------|
+| Move       | WASD  |
+| Shoot      | LMB   |
+
+## Development Focus
+
+- Delivering a fully playable MVP under strict time constraints
 - Prioritizing core mechanics over visual polish
-- Keeping gameplay logic separated from UI
-- Rapid prototyping and iteration during development
-- Maintaining readable and structured code despite jam speed
+- Keeping gameplay logic separate from UI systems
+- Rapid prototyping and iteration
+- Maintaining clean and readable code during fast-paced development
+
+## Feature Demo:
+![Demo](Feature.gif)
+
+[Video](https://drive.google.com/file/d/1CJ_ECD0mvcprWaCCMBV36Md5DrRRVg9A/view?usp=sharing)
